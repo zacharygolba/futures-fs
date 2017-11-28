@@ -63,6 +63,11 @@ impl FsPool {
         }
     }
 
+    /// Creates a new `FsPool`, with a preexisting `CpuPool`.
+    pub fn with_cpu_pool(cpu_pool: CpuPool) -> FsPool {
+        FsPool { cpu_pool }
+    }
+
     /// Returns a `Stream` of the contents of the file at the supplied path.
     pub fn read<P: AsRef<Path> + Send + 'static>(&self, path: P) -> FsReadStream {
         ::read::new(self, path)
